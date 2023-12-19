@@ -6,9 +6,10 @@
 #
 
 # Language
-$lang=ja
+$lang = ja
 
 # SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;black;"黒色"
- ;blue;"青色"
+UPDATE SiteTheme; code[unique = true]; name[lang = $lang]
+                ; black              ; "黒色"
+                ; blue               ; "青色"
+                ; merchandise        ; "商品"

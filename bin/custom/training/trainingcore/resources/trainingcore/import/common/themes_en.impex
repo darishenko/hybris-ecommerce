@@ -6,11 +6,12 @@
 #
 
 # Language
-$lang=en
+$lang = en
 
 # SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;alpha;"Alpha"
- ;black;"Black"
- ;blue;"Blue"
- ;lambda;"Lambda"
+UPDATE SiteTheme; code[unique = true]; name[lang = $lang]
+                ; alpha              ; "Alpha"
+                ; black              ; "Black"
+                ; blue               ; "Blue"
+                ; lambda             ; "Lambda"
+                ; merchandise        ; "Merchandise"
