@@ -4,6 +4,58 @@
 -->
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="items.xsd">
+    <relations>
+        <relation code="Product2Question" localized="false">
+            <sourceElement type="Product" qualifier="product" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement type="Question" qualifier="questions" cardinality="many" collectiontype="list">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+    </relations>
     <itemtypes>
+        <itemtype code="Question">
+            <deployment table="Questions" typecode="30268"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>short unique code of question</description>
+                    <persistence type="property"/>
+                    <modifiers optional="false" initial="true" unique="true"/>
+                </attribute>
+                <attribute qualifier="question" type="java.lang.String">
+                    <description>content of question</description>
+                    <persistence type="property"/>
+                    <modifiers optional="false" initial="true"/>
+                </attribute>
+                <attribute qualifier="questionCustomer" type="Customer">
+                    <description>customer of question, can be anonymous</description>
+                    <persistence type="property"/>
+                    <modifiers optional="false" initial="true"/>
+                </attribute>
+                <attribute qualifier="answer" type="java.lang.String">
+                    <description>content of question</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="answerCustomer" type="Customer">
+                    <description>customer of answer, can be anonymous</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent" generate="true" autocreate="true"
+                  jaloclass="org.training.core.jalo.QuestionsCMSComponent">
+            <description>Used to display questions on product</description>
+            <attributes>
+                <attribute qualifier="numberOfQuestionsToShow" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers optional="false" initial="true"/>
+                    <defaultvalue>3</defaultvalue>
+                </attribute>
+                <attribute qualifier="fontSize" type="java.lang.Integer">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
     </itemtypes>
 </items>

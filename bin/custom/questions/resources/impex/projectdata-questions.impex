@@ -1,0 +1,3 @@
+INSERT_UPDATE Question; code[unique = true]; questionCustomer(uid); question                ; answerCustomer(uid); answer        ; product(pk)
+                      ; 0020122023         ; testuser3@test.com   ; test question content 1 ; testuser2@test.com ; test answer 1 ; 8796319219713
+                      ; 0120122023         ; testuser2@test.com   ; test question content 2 ;                    ;               ; 8796319219713
