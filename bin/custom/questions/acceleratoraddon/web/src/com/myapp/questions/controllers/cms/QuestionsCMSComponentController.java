@@ -1,10 +1,11 @@
 package com.myapp.questions.controllers.cms;
 
 import com.myapp.questions.controllers.QuestionsControllerConstants;
-import com.myapp.questions.facades.ProductFacade;
+import com.myapp.questions.facades.ProductQuestionFacade;
 import de.hybris.platform.addonsupport.controllers.cms.AbstractCMSAddOnComponentController;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.core.model.product.ProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +21,25 @@ public class QuestionsCMSComponentController extends AbstractCMSAddOnComponentCo
     private static final String QUESTIONS = "questions";
     private static final String FONTSIZE = "fontSize";
 
-    private ProductFacade productFacade;
+    private ProductQuestionFacade productQuestionFacade;
 
     @Override
     protected void fillModel(HttpServletRequest request, Model model, QuestionsCMSComponentModel component) {
-        final String productCode = getRequestContextData(request).getProduct().getCode();
+        Optional<ProductModel> product = Optional.ofNullable(getRequestContextData(request).getProduct());
 
-        Optional<ProductData> product = productFacade.getProduct(productCode);
+        if (product.isPresent()) {
+            final String productCode = product.get().getCode();
 
-        product.ifPresent(productData -> model.addAttribute(QUESTIONS, productData.getQuestions()));
+            Optional<ProductData> productData = productQuestionFacade.getProduct(productCode);
+
+            productData.ifPresent(data -> model.addAttribute(QUESTIONS, data.getQuestions()));
+        }
+
         model.addAttribute(FONTSIZE, component.getFontSize());
     }
 
     @Autowired
-    public void setProductFacade(ProductFacade productFacade) {
-        this.productFacade = productFacade;
+    public void setFacade(final ProductQuestionFacade facade) {
+        this.productQuestionFacade = facade;
     }
 }

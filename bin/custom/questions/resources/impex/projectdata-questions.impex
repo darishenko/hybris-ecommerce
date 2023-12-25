@@ -1,3 +1,6 @@
-INSERT_UPDATE Question; code[unique = true]; questionCustomer(uid); question                ; answerCustomer(uid); answer        ; product(pk)
-                      ; 0020122023         ; testuser3@test.com   ; test question content 1 ; testuser2@test.com ; test answer 1 ; 8796319219713
-                      ; 0120122023         ; testuser2@test.com   ; test question content 2 ;                    ;               ; 8796319219713
+$productCatalog = electronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Online'])[unique=true, default=$productCatalog:Online]
+
+INSERT_UPDATE Question; code[unique = true]; questionCustomer(uid); question                ; answerCustomer(uid); answer        ; product(code[unique = true], $catalogVersion)
+                      ; 0025122023         ; testuser3@test.com   ; test question content 1 ; testuser2@test.com ; test answer 1 ; 300938
+                      ; 0125122023         ; testuser2@test.com   ; test question content 2 ;                    ;               ; 300938

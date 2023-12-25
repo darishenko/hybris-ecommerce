@@ -2,36 +2,37 @@
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
-           
-    <context:annotation-config/> 
 
-
-	<!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
-	<bean id="defaultQuestionsJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
-		<property name="addOnName" value="questions"/>
-	</bean>
-
-	<bean id="defaultQuestionsBeforeViewJsPropsHandlerAdaptee" parent="abstractBeforeViewJsPropsHandlerAdaptee" class="de.hybris.platform.addonsupport.interceptors.ExportJsPropertiesBeforeViewHandler">
-		<property name="messageSource" ref="defaultQuestionsJavaScriptMessageResourceAccessor"/>
-	</bean>
-
-	<bean id="getQuestionsBeforeViewHandler" parent="beforeViewHandlerAdapter">
-		<property name="adaptee">
-			<ref bean="defaultQuestionsBeforeViewJsPropsHandlerAdaptee"/>
-		</property>
-	</bean>
-	<bean id="QuestionsBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList" parent="listMergeDirective">
-		<property name="add" ref="getQuestionsBeforeViewHandler"/>
-	</bean>
-
+    <context:annotation-config/>
+    <context:component-scan base-package="com.myapp.questions"/>
+    <bean id="QuestionsCMSComponentController"
+          class="com.myapp.questions.controllers.cms.QuestionsCMSComponentController">
+    </bean>
+    <bean id="defaultQuestionsJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
+        <property name="addOnName" value="questions"/>
+    </bean>
+    <bean id="defaultQuestionsBeforeViewJsPropsHandlerAdaptee" parent="abstractBeforeViewJsPropsHandlerAdaptee"
+          class="de.hybris.platform.addonsupport.interceptors.ExportJsPropertiesBeforeViewHandler">
+        <property name="messageSource" ref="defaultQuestionsJavaScriptMessageResourceAccessor"/>
+    </bean>
+    <bean id="getQuestionsBeforeViewHandler" parent="beforeViewHandlerAdapter">
+        <property name="adaptee">
+            <ref bean="defaultQuestionsBeforeViewJsPropsHandlerAdaptee"/>
+        </property>
+    </bean>
+    <bean id="QuestionsBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="getQuestionsBeforeViewHandler"/>
+    </bean>
+    <bean id="beforeViewHandlersList"/>
 </beans>

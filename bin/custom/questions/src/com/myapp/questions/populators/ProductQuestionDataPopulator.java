@@ -18,9 +18,9 @@ public class ProductQuestionDataPopulator implements Populator<ProductModel, Pro
     @Override
     public void populate(@Nonnull ProductModel productModel, @Nonnull ProductData productData)
             throws ConversionException {
-        final List<QuestionModel> questionModelList = productModel.getQuestions();
+        final List<QuestionModel> questions = productModel.getQuestions();
 
-        productData.setQuestions(questionConverter.convertAll(questionModelList));
+        productData.setQuestions(questionConverter.convertAll(questions));
     }
 
     @Required

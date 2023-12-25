@@ -9,11 +9,11 @@ import javax.annotation.Nonnull;
 
 public class QuestionDataPopulator implements Populator<QuestionModel, QuestionData> {
     @Override
-    public void populate(@Nonnull QuestionModel questionModel, @Nonnull QuestionData questionData)
+    public void populate(@Nonnull QuestionModel questions, @Nonnull QuestionData questionData)
             throws ConversionException {
-        questionData.setQuestionCustomer(questionModel.getQuestionCustomer().getName());
-        questionData.setQuestion(questionModel.getQuestion());
-        questionData.setAnswerCustomer(questionModel.getAnswerCustomer().getName());
-        questionData.setAnswer(questionModel.getAnswer());
+        questionData.setQuestionCustomerName(questions.getQuestionCustomer().getName());
+        questionData.setQuestion(questions.getQuestion());
+        questionData.setAnswerCustomerName(questions.getAnswerCustomer().getName());
+        questionData.setAnswer(questions.getAnswer());
     }
 }

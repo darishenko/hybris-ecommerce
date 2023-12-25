@@ -6,6 +6,7 @@
     <extension abstractclassprefix="Generated" classprefix="Questions" description="questions extension"
                managername="QuestionsManager" managersuperclass="de.hybris.platform.jalo.extension.Extension"
                name="questions">
+        <requires-extension name="cms2"/>
         <requires-extension name="addonsupport"/>
         <coremodule generated="true" manager="com.myapp.questions.jalo.QuestionsManager"
                     packageroot="com.myapp.questions"/>

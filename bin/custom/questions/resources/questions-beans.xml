@@ -2,9 +2,9 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
     <bean class="com.myapp.questions.data.QuestionData">
         <property name="id" type="java.lang.String"/>
-        <property name="questionCustomer" type="java.lang.String"/>
+        <property name="questionCustomerName" type="java.lang.String"/>
         <property name="question" type="java.lang.String"/>
-        <property name="answerCustomer" type="java.lang.String"/>
+        <property name="answerCustomerName" type="java.lang.String"/>
         <property name="answer" type="java.lang.String"/>
     </bean>
     <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
