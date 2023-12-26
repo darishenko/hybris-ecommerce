@@ -1,0 +1,15 @@
+$contentCatalog = electronicsContentCatalog
+$contentCV = catalogVersion(catalog(id[default=$contentCatalog]), version[default='Online'])
+
+INSERT_UPDATE QuestionsCMSComponent; $contentCV[unique = true]; uid[unique = true] ; name                    ; &componentRef      ; fontSize; numberOfQuestionsToShow
+                                   ;                          ; QuestionsComponent ; Questions CMS Component ; QuestionsComponent ; 16      ; 1
+
+INSERT_UPDATE ContentSlotName; name[unique = true]; template(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; QuestionSlot       ;                                                                                 ;                          ; wide
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; name          ; active; cmsComponents(&componentRef)
+                         ;                          ; QuestionSlot      ; Question Slot ; true  ; QuestionsComponent
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                  ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; questionsslotforpage-ProductDetails ; Questions              ;                                                                                     ; QuestionSlot                               ; true
+

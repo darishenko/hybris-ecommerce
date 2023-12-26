@@ -6,8 +6,9 @@
 # Import the themes supported by the store front
 #
 
-INSERT_UPDATE SiteTheme;code[unique=true]
-;black
-;blue
-;alpha
-;lambda
+INSERT_UPDATE SiteTheme; code[unique = true]
+                       ; black
+                       ; blue
+                       ; alpha
+                       ; lambda
+                       ; merchandise
