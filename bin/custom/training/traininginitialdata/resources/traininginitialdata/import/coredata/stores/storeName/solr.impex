@@ -4,8 +4,10 @@
 #
 # Import the Solr configuration for the store
 #
-$productCatalog = __PRODUCT_CATALOG_NAME__
-$catalogVersions = catalogVersions(catalog(id), version);
+$productCatalog = electronicsProductCatalog
+$onlineProductCatalogVersion = Online
+$catalogVersion = catalogVersion(catalog(id[default = $productCatalog]), version[default = $onlineProductCatalogVersion])
+$catalogVersions =
 $serverConfigName =
 $indexConfigName =
 $searchConfigName =
@@ -103,3 +105,14 @@ INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code
 INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
                            ; $solrIndexedType:quesrions count-asc              ; questionCount           ; true
                            ; $solrIndexedType:quesrions count-desc             ; questionCount           ; false
+
+# Define Product Price Row
+INSERT_UPDATE UserPriceGroup; code[unique = true]
+                            ; priceDependingOnOrderProductCountGroup
+
+INSERT_UPDATE PriceRow; product(code, $catalogVersion)[unique = true]; ug(code)[allownull = true]             ; net[unique = true, default = false]; currency(isocode); price; unit(code); minqtd; giveAwayPrice; channel(code)
+                      ; 300938                                       ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 100  ; pieces    ; 10    ; false        ;
+                      ; 358639                                       ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 300  ; pieces    ; 10    ; false        ;
+
+INSERT_UPDATE Customer; uid[unique = true]; Europe1PriceFactory_UPG(code)
+                      ; anonymous         ; priceDependingOnOrderProductCountGroup

@@ -17,9 +17,11 @@ public class CustomSearchResultVariantProductPopulator extends SearchResultVaria
         super.populate(source, target);
 
         String count = getValue(source, PRODUCT_QUESTIONS_COUNT);
+
         if (Objects.isNull(count)) {
             target.setQuestionsCount(DEFAULT_QUESTIONS_COUNT);
         }
+
         target.setQuestionsCount(Integer.valueOf(count));
     }
 }
