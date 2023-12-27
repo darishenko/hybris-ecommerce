@@ -2,7 +2,9 @@
 <!--
  Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
 --><properties xmlns:oxf="http://www.orbeon.com/oxf/processors" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -29,7 +31,9 @@
     
     
     <!-- the following line adds a wizard-like look and feel to forms (only if the application name is INSA) -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -56,7 +60,9 @@
     
     
     <!-- property as="xs:string"  name="oxf.fr.detail.view.appearance.INSA.*"                       value="wizard"/ -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -83,7 +89,9 @@
     
     
     <!-- the following line define the buttons that are going to be rendered as part of the form -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -110,7 +118,9 @@
     
     
     <!-- only if the application name is INSA -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -137,7 +147,9 @@
     
     
     <!-- property as="xs:string"  name="oxf.fr.detail.buttons.INSA.*"                               value="refresh save-final wizard-prev wizard-next"/ -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -164,7 +176,9 @@
     
     
     <!-- the following line defines the date format used by default -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -191,7 +205,9 @@
     
     
     <!-- it can be also defined at the application/form level -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -218,7 +234,9 @@
     
     
     <!-- [M]/[D]/[Y]  or [D]/[M]/[Y] or [D].[M].[Y]-->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -245,7 +263,9 @@
     
     
     <property as="xs:string" name="oxf.xforms.format.input.date" value="[D].[M].[Y]"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -272,7 +292,9 @@
     
     
     <!-- the following URL is translated at installation time -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -299,7 +321,9 @@
     
     
     <property as="xs:anyURI" name="oxf.fr.persistence.hybris.uri" value="http://localhost:9001/xyformsweb/fr/service/hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -326,7 +350,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.persistence.hybris.versioning" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -353,7 +379,9 @@
     
     
     <!-- the following URL is translated at installation time -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -380,7 +408,9 @@
     
     
     <property as="xs:anyURI" name="oxf.fr.persistence.hybris-nv.uri" value="http://localhost:9001/xyformsweb/fr/service/hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -407,7 +437,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.persistence.hybris-nv.versioning" value="false"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -434,7 +466,9 @@
     
     
     <!-- all forms created by orbeon:builder are stored in hybris -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -461,7 +495,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.orbeon.builder.data" value="hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -488,7 +524,9 @@
     
     
     <!-- orbeon:builder is read from local installation -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -515,7 +553,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.orbeon.builder.form" value="resource"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -542,7 +582,9 @@
     
     
     <!-- all forms and data created for orbeon:library are read and stored in hybris -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -569,7 +611,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.orbeon.library.data" value="hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -596,7 +640,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.orbeon.library.form" value="hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -623,7 +669,9 @@
     
     
     <!-- forms and data for every appication group are stored in hybris -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -650,7 +698,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.*.*.form" value="hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -677,7 +727,9 @@
     
     
     <property as="xs:string" name="oxf.fr.persistence.provider.*.*.data" value="hybris"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -704,7 +756,9 @@
     
     
     <!-- support for autosave -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -731,7 +785,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.persistence.hybris.autosave" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -758,7 +814,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.support-autosave" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -785,7 +843,9 @@
     
     
     <property as="xs:integer" name="oxf.fr.detail.autosave-delay.*.*" value="0"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -813,7 +873,9 @@
     
     
     <!-- to support autosave, a user authentication method has to be defined... -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -840,7 +902,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.authentication.header.sticky" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -867,7 +931,9 @@
     
     
     <property as="xs:string" name="oxf.fr.authentication.method" value="header"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -894,7 +960,9 @@
     
     
     <property as="xs:string" name="oxf.fr.authentication.header.username" value="hybris-Username"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -921,7 +989,9 @@
     
     
     <property as="xs:string" name="oxf.fr.authentication.header.group" value="hybris-Group"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -948,7 +1018,9 @@
     
     
     <property as="xs:string" name="oxf.fr.authentication.header.roles" value="hybris-Roles"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -976,7 +1048,9 @@
     
     
     <!-- we set the following persistence apis as inactive for search -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1003,7 +1077,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.persistence.exist.active" value="false"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1030,7 +1106,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.persistence.resource.active" value="false"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1057,7 +1135,9 @@
     
     
     <!-- Default error dialog is not shown, instead a javascript function will process error messages -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1084,7 +1164,9 @@
     
     
     <!-- property as="xs:boolean" name="oxf.xforms.show-error-dialog"                    value="false" / -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1111,7 +1193,9 @@
     
     
     <!-- The following properties are used when dealing with SSL on the Persistence API out side hybris with https -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1140,7 +1224,7 @@
     <!-- <property as="xs:anyURI"  name="oxf.http.ssl.keystore.uri" value="file:${xyformsstorefrontcommons.orbeon.keystoreFile}"/>
     <property as="xs:string" name="oxf.http.ssl.keystore.password" value="${xyformsstorefrontcommons.orbeon.keystorePass}"/>
     <property as="xs:string" name="oxf.http.ssl.hostname-verifier" value="allow-all"/> -->
-                                                                                                            
+                                                                                                                    
     
     
     
@@ -1166,8 +1250,12 @@
     
     
     
-    <property as="xs:string" name="oxf.http.forward-headers" value="Authorization hybris-Proxy-da039ffd-d66a-4c03-a674-ffc401272aab"/>
-                                                                                                            
+    
+    
+    <property as="xs:string" name="oxf.http.forward-headers" value="Authorization hybris-Proxy-f2c3e54c-1699-4ce2-ba25-49e4279d858a"/>
+                                                                                                                    
+    
+    
     
     
     
@@ -1194,7 +1282,9 @@
     
     
     <!-- This is only meant for backoffice extension -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1221,7 +1311,9 @@
     
     
     <property as="xs:string" name="oxf.xforms.login-page-detection-regexp" value="login_btn"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1248,7 +1340,9 @@
     
     
     <!-- general CSS for every form -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1275,7 +1369,9 @@
     
     
     <property as="xs:string" name="oxf.fr.css.custom.uri.*.*" value="/forms/style.css"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1302,7 +1398,9 @@
     
     
     <!-- whether sections are allowed to collapse -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1329,7 +1427,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.detail.ajax.section.collapse.*.*" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1356,7 +1456,9 @@
     
     
     <!-- whether sections are animated -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1383,7 +1485,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.detail.ajax.section.animate.*.*" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1410,7 +1514,9 @@
     
     
     <!--  minimize and combine css files -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1437,7 +1543,9 @@
     
     
     <property as="xs:boolean" name="oxf.xforms.minimal-resources" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1464,7 +1572,9 @@
     
     
     <property as="xs:boolean" name="oxf.xforms.combine-resources" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1491,7 +1601,9 @@
     
     
     <!-- We modify the autosave process, so forms supporting autosave do not complain having an unsaved document -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1518,7 +1630,9 @@
     
     
     <!-- this should be removed once orbeon 4.7 has been released -->
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1548,7 +1662,9 @@
         save(draft = "true")
         then xf:dispatch("custom-clean-data")
     </property>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1575,7 +1691,9 @@
     
     
     <property as="xs:anyURI" name="oxf.fr.detail.model.custom.*.*" value="oxf:/config/custom-clear-data.xml"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1602,7 +1720,9 @@
     
     
     <controller xmlns="http://www.orbeon.com/oxf/controller" page-public-methods="GET HEAD POST" service-public-methods="GET HEAD"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1629,7 +1749,9 @@
     
     
     <page public-methods="GET HEAD POST" view="view.xpl"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1656,7 +1778,9 @@
     
     
     <service public-methods="GET HEAD" view="view.xpl"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1683,7 +1807,9 @@
     
     
     <property as="xs:string" name="page-public-methods" processor-name="oxf:page-flow" value="GET HEAD POST PUT DELETE"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1710,7 +1836,9 @@
     
     
     <property as="xs:string" name="service-public-methods" processor-name="oxf:page-flow" value="GET HEAD POST PUT DELETE"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1739,7 +1867,9 @@
     <property as="xs:string" name="oxf.fr.detail.process.after-controls.background.new.*.*">
         save
     </property>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1768,7 +1898,9 @@
     <property as="xs:string" name="oxf.fr.detail.process.after-controls.background.edit.*.*">
         save
     </property>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1795,7 +1927,9 @@
     
     
     <property as="xs:boolean" name="oxf.fr.detail.service.background.enable-return-data.*.*" value="true"/>
-                                                                                                            
+                                                                                                                    
+    
+    
     
     
     
@@ -1822,7 +1956,9 @@
     
     
     <property as="xs:boolean" name="oxf.fb.menu.permissions.owner-group" value="false"/>
-                                                                                                        
+                                                                                                                
+
+
 
 
 

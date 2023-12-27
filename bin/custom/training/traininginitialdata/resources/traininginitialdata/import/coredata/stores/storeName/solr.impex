@@ -71,5 +71,24 @@ INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true];
 
 
 # Define Product questions count indexed property
-INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; fieldValueProvider
-                                 ; $solrIndexedType                          ; questionCount      ; int       ;                           ; productQuestionsCountProvider
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; fieldValueProvider            ; displayName        ; facetType(code); priority; visible; rangeSet(name)
+                                 ; $solrIndexedType                          ; questionCount      ; int       ;                           ; productQuestionsCountProvider ; Count of questions ; MultiSelectOr  ; 1000    ; true   ; productQuetionsCountRanger
+
+# Define questions count range set
+INSERT_UPDATE SolrValueRangeSet; name[unique = true]        ; qualifier; type; solrValueRanges(&ValueRefID)
+                               ; productQuetionsCountRanger ; default  ; int ; questionsCountRangeRef1,questionsCountRangeRef2,questionsCountRangeRef3,questionsCountRangeRef4,questionsCountRangeRef5
+
+
+# Define questions count ranges
+INSERT_UPDATE SolrValueRange; &ValueRefID             ; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
+                            ; questionsCountRangeRef1 ; productQuetionsCountRanger            ; 1                  ; 1   ; 1
+                            ; questionsCountRangeRef2 ; productQuetionsCountRanger            ; 2                  ; 2   ; 2
+                            ; questionsCountRangeRef3 ; productQuetionsCountRanger            ; 3                  ; 3   ; 3
+                            ; questionsCountRangeRef4 ; productQuetionsCountRanger            ; 4                  ; 4   ; 4
+                            ; questionsCountRangeRef5 ; productQuetionsCountRanger            ; 5-more             ; 5   ; 1000
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = true]; facetType(code); facetSort(code); priority; visible; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider            ; facetDisplayNameProvider; customFacetSortProvider; topValuesProvider        ; rangeSets(name)            ; displayName
+                                 ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                      ; MultiSelectOr  ; Alpha          ; 100     ; true   ;                                     ;                                    ; productQuestionsCountProvider ;                         ;                        ; defaultTopValuesProvider ; productQuetionsCountRanger ; Count of questions
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; facet[default = true]; facetType(code); priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]
+                                     ; questionsCount:$solrIndexedType                                  ;                      ; MultiSelectOr  ; 100     ;                         ;                  ;                       ;                                  ;

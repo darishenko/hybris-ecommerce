@@ -10,15 +10,16 @@ import java.util.Objects;
 
 public class CustomSearchResultVariantProductPopulator extends SearchResultVariantProductPopulator {
     private static final String PRODUCT_QUESTIONS_COUNT = "questionCount";
+    private static final Integer DEFAULT_QUESTIONS_COUNT = 0;
 
     @Override
     public void populate(@Nonnull SearchResultValueData source, @Nonnull ProductData target) {
         super.populate(source, target);
 
-        Integer count = getValue(source, PRODUCT_QUESTIONS_COUNT);
+        String count = getValue(source, PRODUCT_QUESTIONS_COUNT);
         if (Objects.isNull(count)) {
-            count = 0;
+            target.setQuestionsCount(DEFAULT_QUESTIONS_COUNT);
         }
-        target.setQuestionsCount(count);
+        target.setQuestionsCount(Integer.valueOf(count));
     }
 }
