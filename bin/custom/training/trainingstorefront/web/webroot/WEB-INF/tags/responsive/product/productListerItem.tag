@@ -61,7 +61,9 @@
             </div>
         </div>
         <div>
-            <p>Questions count: ${product.questionsCount}</p>
+            <p>
+                <spring:message code="text.questions.count"/>${product.questionsCount}
+            </p>
         </div>
     </ycommerce:testId>
 </li>
