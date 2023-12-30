@@ -4,8 +4,9 @@
 # ImpEx for Importing Prices
 
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-
+$productCatalog = electronicsProductCatalog
+$onlineProductCatalogVersion = Online
+$catalogOnlineVersion = catalogVersion(catalog(id[default = $productCatalog]), version[default = $onlineProductCatalogVersion])
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
 $prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
@@ -13,3 +14,14 @@ $prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1Pr
 $approved=approvalstatus(code)[default='approved']
 
 UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;Europe1PriceFactory_PTG(code)
+
+# Define Product Price Row
+INSERT_UPDATE UserPriceGroup; code[unique = true]
+                            ; priceDependingOnOrderProductCountGroup
+
+INSERT_UPDATE PriceRow; product(code, $catalogOnlineVersion)[unique = true]; ug(code)[allownull = true]             ; net[unique = true, default = false]; currency(isocode); price; unit(code); minqtd; giveAwayPrice; channel(code)
+                      ; 300938                                             ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 100  ; pieces    ; 10    ; false        ;
+                      ; 358639                                             ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 300  ; pieces    ; 10    ; false        ;
+
+INSERT_UPDATE Customer; uid[unique = true]; Europe1PriceFactory_UPG(code)
+                      ; anonymous         ; priceDependingOnOrderProductCountGroup

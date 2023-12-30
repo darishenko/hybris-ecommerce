@@ -7,18 +7,9 @@
 $productCatalog = electronicsProductCatalog
 $onlineProductCatalogVersion = Online
 $catalogVersion = catalogVersion(catalog(id[default = $productCatalog]), version[default = $onlineProductCatalogVersion])
-$catalogVersions =
-$serverConfigName =
-$indexConfigName =
-$searchConfigName =
-$facetSearchConfigName =
-$facetSearchConfigDescription =
-$searchIndexNamePrefix =
 $solrIndexedType = electronicsProductType
-$indexBaseSite =
 $indexLanguages = ja, en, de, zh
 $indexCurrencies = JPY, USD
-
 
 #
 # Setup the Solr server, indexer, and search configs
@@ -71,7 +62,6 @@ INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code
 # Define the sort fields
 INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
 
-
 # Define Product questions count indexed property
 INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; fieldValueProvider            ; displayName        ; facetType(code); priority; visible; rangeSet(name)
                                  ; $solrIndexedType                          ; questionCount      ; int       ;                           ; productQuestionsCountProvider ; Count of questions ; MultiSelectOr  ; 1000    ; true   ; productQuetionsCountRanger
@@ -79,7 +69,6 @@ INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; n
 # Define questions count range set
 INSERT_UPDATE SolrValueRangeSet; name[unique = true]        ; qualifier; type; solrValueRanges(&ValueRefID)
                                ; productQuetionsCountRanger ; default  ; int ; questionsCountRangeRef1,questionsCountRangeRef2,questionsCountRangeRef3,questionsCountRangeRef4,questionsCountRangeRef5
-
 
 # Define questions count ranges
 INSERT_UPDATE SolrValueRange; &ValueRefID             ; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
@@ -95,7 +84,6 @@ INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; n
 INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; facet[default = true]; facetType(code); priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]
                                      ; questionsCount:$solrIndexedType                                  ;                      ; MultiSelectOr  ; 100     ;                         ;                  ;                       ;                                  ;
 
-$solrIndexedType = electronicsProductType
 # Define the available sorts
 INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code[unique = true]  ; name                         ; useBoost
                       ; sortRef3  ; $solrIndexedType                      ; quesrions count-asc  ; Questions count (ascending)  ; false
@@ -105,14 +93,3 @@ INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code
 INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
                            ; $solrIndexedType:quesrions count-asc              ; questionCount           ; true
                            ; $solrIndexedType:quesrions count-desc             ; questionCount           ; false
-
-# Define Product Price Row
-INSERT_UPDATE UserPriceGroup; code[unique = true]
-                            ; priceDependingOnOrderProductCountGroup
-
-INSERT_UPDATE PriceRow; product(code, $catalogVersion)[unique = true]; ug(code)[allownull = true]             ; net[unique = true, default = false]; currency(isocode); price; unit(code); minqtd; giveAwayPrice; channel(code)
-                      ; 300938                                       ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 100  ; pieces    ; 10    ; false        ;
-                      ; 358639                                       ; priceDependingOnOrderProductCountGroup ;                                    ; USD              ; 300  ; pieces    ; 10    ; false        ;
-
-INSERT_UPDATE Customer; uid[unique = true]; Europe1PriceFactory_UPG(code)
-                      ; anonymous         ; priceDependingOnOrderProductCountGroup

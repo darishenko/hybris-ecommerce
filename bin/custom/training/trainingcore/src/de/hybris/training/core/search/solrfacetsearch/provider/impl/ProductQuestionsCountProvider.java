@@ -1,5 +1,6 @@
 package de.hybris.training.core.search.solrfacetsearch.provider.impl;
 
+import com.myapp.questions.model.QuestionModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.solrfacetsearch.config.IndexConfig;
@@ -9,6 +10,7 @@ import de.hybris.platform.solrfacetsearch.provider.FieldNameProvider;
 import de.hybris.platform.solrfacetsearch.provider.FieldValue;
 import de.hybris.platform.solrfacetsearch.provider.FieldValueProvider;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Nonnull;
 import java.io.Serializable;
@@ -27,7 +29,6 @@ public class ProductQuestionsCountProvider implements FieldValueProvider, Serial
                                                  @Nonnull IndexedProperty indexedProperty, @Nonnull Object model)
             throws FieldValueProviderException {
         if (model instanceof ProductModel product) {
-
             if (indexedProperty.isLocalized()) {
                 final Collection<LanguageModel> languages = indexConfig.getLanguages();
 
@@ -37,7 +38,6 @@ public class ProductQuestionsCountProvider implements FieldValueProvider, Serial
             } else {
                 return createFieldValueList(product, null, indexedProperty);
             }
-
         }
 
         throw new FieldValueProviderException(ERROR_NOT_PRODUCT_TYPE);
@@ -46,7 +46,7 @@ public class ProductQuestionsCountProvider implements FieldValueProvider, Serial
     protected List<FieldValue> createFieldValueList(final ProductModel product, final LanguageModel language,
                                                     final IndexedProperty indexedProperty) {
         final String languageIsoCode = getLanguageIsoCode(language);
-        final Integer productQuestionsCount = product.getQuestions().size();
+        final Integer productQuestionsCount = getProductQuestionsCount(product);
         final Collection<String> fieldNames = fieldNameProvider.getFieldNames(indexedProperty, languageIsoCode);
 
         return fieldNames.stream()
@@ -65,5 +65,15 @@ public class ProductQuestionsCountProvider implements FieldValueProvider, Serial
     @Required
     public void setFieldNameProvider(final FieldNameProvider fieldNameProvider) {
         this.fieldNameProvider = fieldNameProvider;
+    }
+
+    private Integer getProductQuestionsCount(final ProductModel product) {
+        List<QuestionModel> questions = product.getQuestions();
+
+        if (CollectionUtils.isEmpty(questions)) {
+            return 0;
+        }
+
+        return questions.size();
     }
 }
