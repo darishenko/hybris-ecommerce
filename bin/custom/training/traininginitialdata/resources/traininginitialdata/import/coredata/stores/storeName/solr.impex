@@ -4,67 +4,92 @@
 #
 # Import the Solr configuration for the store
 #
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$catalogVersions=catalogVersions(catalog(id),version);
-$serverConfigName=
-$indexConfigName=
-$searchConfigName=
-$facetSearchConfigName=
-$facetSearchConfigDescription=
-$searchIndexNamePrefix=
-$solrIndexedType=
-$indexBaseSite=
-$indexLanguages=ja,en,de,zh
-$indexCurrencies=JPY,USD
-
+$productCatalog = electronicsProductCatalog
+$onlineProductCatalogVersion = Online
+$catalogVersion = catalogVersion(catalog(id[default = $productCatalog]), version[default = $onlineProductCatalogVersion])
+$solrIndexedType = electronicsProductType
+$indexLanguages = ja, en, de, zh
+$indexCurrencies = JPY, USD
 
 #
 # Setup the Solr server, indexer, and search configs
 #
 
 # Create the solr server configuration
-INSERT_UPDATE SolrServerConfig;name[unique=true];mode(code)
+INSERT_UPDATE SolrServerConfig; name[unique = true]; mode(code)
 
 # Create the solr indexer configuration
-INSERT_UPDATE SolrIndexConfig;name[unique=true];batchSize;numberOfThreads;indexMode(code);
+INSERT_UPDATE SolrIndexConfig; name[unique = true]; batchSize; numberOfThreads; indexMode(code);
 
 # Create the faceted search configuration
-INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+INSERT_UPDATE SolrSearchConfig; description[unique = true]; pageSize
 
 #
 # Setup the indexed types, their properties, and the update queries
 #
 
 # Declare the indexed type Product
-INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+INSERT_UPDATE SolrIndexedType; identifier[unique = true]; type(code); variant; sorts(&sortRefID)
 
-INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);enabledLanguageFallbackMechanism;$catalogVersions
+INSERT_UPDATE SolrFacetSearchConfig; name[unique = true]; description; indexNamePrefix; languages(isocode); currencies(isocode); solrServerConfig(name); solrSearchConfig(description); solrIndexConfig(name); solrIndexedTypes(identifier); enabledLanguageFallbackMechanism; $catalogVersions
 
-UPDATE BaseSite;uid[unique=true];solrFacetSearchConfiguration(name)
+UPDATE BaseSite; uid[unique = true]; solrFacetSearchConfiguration(name)
 
 # Define price range set
-INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
+INSERT_UPDATE SolrValueRangeSet; name[unique = true]; qualifier; type; solrValueRanges(&rangeValueRefID)
 
 # Define price ranges
-INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
 
 # Non-facet properties
-INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; valueProviderParameter
 
 # Category fields
-INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);localized[default=false];multiValue[default=true];categoryField[default=true];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; multiValue[default = true]; categoryField[default = true]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider
 
 # Category facets
-INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;visible;categoryField[default=true];fieldValueProvider;facetDisplayNameProvider;topValuesProvider
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); multiValue[default = true]; facet[default = true]; facetType(code); facetSort(code); priority; visible; categoryField[default = true]; fieldValueProvider; facetDisplayNameProvider; topValuesProvider
 
 # Other facet properties
-INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=true];facetType(code);facetSort(code);priority;visible;useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;facetDisplayNameProvider;customFacetSortProvider;topValuesProvider;rangeSets(name)
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = true]; facetType(code); facetSort(code); priority; visible; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; facetDisplayNameProvider; customFacetSortProvider; topValuesProvider; rangeSets(name)
 
 # Create the queries that will be used to extract data for Solr
-INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+INSERT_UPDATE SolrIndexerQuery; solrIndexedType(identifier)[unique = true]; identifier[unique = true]; type(code); injectCurrentDate[default = true]; injectCurrentTime[default = true]; injectLastIndexTime[default = true]; query; user(uid)
 
 # Define the available sorts
-INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true];useBoost
+INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code[unique = true]; useBoost
 
 # Define the sort fields
-INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
+
+# Define Product questions count indexed property
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); localized[default = false]; fieldValueProvider            ; displayName        ; facetType(code); priority; visible; rangeSet(name)
+                                 ; $solrIndexedType                          ; questionCount      ; int       ;                           ; productQuestionsCountProvider ; Count of questions ; MultiSelectOr  ; 1000    ; true   ; productQuetionsCountRanger
+
+# Define questions count range set
+INSERT_UPDATE SolrValueRangeSet; name[unique = true]        ; qualifier; type; solrValueRanges(&ValueRefID)
+                               ; productQuetionsCountRanger ; default  ; int ; questionsCountRangeRef1,questionsCountRangeRef2,questionsCountRangeRef3,questionsCountRangeRef4,questionsCountRangeRef5
+
+# Define questions count ranges
+INSERT_UPDATE SolrValueRange; &ValueRefID             ; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
+                            ; questionsCountRangeRef1 ; productQuetionsCountRanger            ; 1                  ; 1   ; 1
+                            ; questionsCountRangeRef2 ; productQuetionsCountRanger            ; 2                  ; 2   ; 2
+                            ; questionsCountRangeRef3 ; productQuetionsCountRanger            ; 3                  ; 3   ; 3
+                            ; questionsCountRangeRef4 ; productQuetionsCountRanger            ; 4                  ; 4   ; 4
+                            ; questionsCountRangeRef5 ; productQuetionsCountRanger            ; 5-more             ; 5   ; 1000
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; facet[default = true]; facetType(code); facetSort(code); priority; visible; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider            ; facetDisplayNameProvider; customFacetSortProvider; topValuesProvider        ; rangeSets(name)            ; displayName
+                                 ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                      ; MultiSelectOr  ; Alpha          ; 100     ; true   ;                                     ;                                    ; productQuestionsCountProvider ;                         ;                        ; defaultTopValuesProvider ; productQuetionsCountRanger ; Count of questions
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; facet[default = true]; facetType(code); priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]
+                                     ; questionsCount:$solrIndexedType                                  ;                      ; MultiSelectOr  ; 100     ;                         ;                  ;                       ;                                  ;
+
+# Define the available sorts
+INSERT_UPDATE SolrSort; &sortRefID; indexedType(identifier)[unique = true]; code[unique = true]  ; name                         ; useBoost
+                      ; sortRef3  ; $solrIndexedType                      ; quesrions count-asc  ; Questions count (ascending)  ; false
+                      ; sortRef4  ; $solrIndexedType                      ; quesrions count-desc ; Questions count (descending) ; false
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
+                           ; $solrIndexedType:quesrions count-asc              ; questionCount           ; true
+                           ; $solrIndexedType:quesrions count-desc             ; questionCount           ; false
