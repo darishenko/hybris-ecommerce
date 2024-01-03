@@ -4,35 +4,49 @@
 # ImpEx for Promotions
 
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$defaultPromoGrp=__DEFAULT_PROMO_GRP__
+$productCatalog = electronicsProductCatalog
+$defaultPromoGrp = electronicsPromoGrp
+$lang = en
 
-$favCustomers=favoriteCustomers
-$bigSpenders=bigSpenders
-$catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Online])[default=$productCatalog:Online]
+$favCustomers = favoriteCustomers
+$bigSpenders = bigSpenders
+$catalogVersion = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]), CatalogVersion.version[default=Online])[default=$productCatalog:Online]
 
-INSERT PromotionPriceRow;&tresholdId;Currency(isocode);price
+INSERT PromotionPriceRow; &tresholdId; Currency(isocode); price
 
-INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT PromotionPriceRow; &priceId; Currency(isocode); price
 
-INSERT_UPDATE OrderThresholdDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;messageFired[lang=en];messageFired[lang=de];messageFired[lang=ja];messageFired[lang=zh];priority;thresholdTotals(&tresholdId);discountPrices(&priceId)
+INSERT_UPDATE OrderThresholdDiscountPromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true, unique = true]; code[unique = true]; title; description; messageFired[lang = en]; messageFired[lang = de]; messageFired[lang = ja]; messageFired[lang = zh]; priority; thresholdTotals(&tresholdId); discountPrices(&priceId)
 
-INSERT_UPDATE PromotionUserRestriction;positive;promotion(code)[unique=true];users(uid)
+INSERT_UPDATE PromotionUserRestriction; positive; promotion(code)[unique = true]; users(uid)
 
-INSERT PromotionPriceRow;&tresholdId;Currency(isocode);price
+INSERT PromotionPriceRow; &tresholdId; Currency(isocode); price
 
-INSERT_UPDATE ProductPercentageDiscountPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;percentageDiscount;priority;products(code,$catalogVersion)
+INSERT_UPDATE ProductPercentageDiscountPromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true][unique = true]; code[unique = true]; title; description; percentageDiscount; priority; products(code, $catalogVersion)
 
-INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT PromotionPriceRow; &priceId; Currency(isocode); price
 
-INSERT_UPDATE AcceleratorProductMultiBuyPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;bundlePrices(&priceId)
+INSERT_UPDATE AcceleratorProductMultiBuyPromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true][unique = true]; code[unique = true]; title; description; priority; categories(code, $catalogVersion); qualifyingCount; bundlePrices(&priceId)
 
-INSERT_UPDATE AcceleratorProductBOGOFPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;categories(code,$catalogVersion);qualifyingCount;freeCount
+INSERT_UPDATE AcceleratorProductBOGOFPromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true][unique = true]; code[unique = true]; title; description; priority; categories(code, $catalogVersion); qualifyingCount; freeCount
 
-INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT PromotionPriceRow; &priceId; Currency(isocode); price
 
-INSERT_UPDATE ProductPerfectPartnerPromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true][unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);partnerProducts(code,$catalogVersion);partnerPrices(&priceId)
+INSERT_UPDATE ProductPerfectPartnerPromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true][unique = true]; code[unique = true]; title; description; priority; products(code, $catalogVersion); partnerProducts(code, $catalogVersion); partnerPrices(&priceId)
 
-INSERT PromotionPriceRow;&priceId;Currency(isocode);price
+INSERT PromotionPriceRow; &priceId; Currency(isocode); price
 
-INSERT_UPDATE ProductBundlePromotion;PromotionGroup(Identifier[default=$defaultPromoGrp]);enabled[default=true,unique=true];code[unique=true];title;description;priority;products(code,$catalogVersion);bundlePrices(&priceId)
+INSERT_UPDATE ProductBundlePromotion; PromotionGroup(Identifier[default = $defaultPromoGrp]); enabled[default = true, unique = true]; code[unique = true]; title; description; priority; products(code, $catalogVersion); bundlePrices(&priceId)
+
+INSERT_UPDATE RuleConditionDefinition; id[unique = true]         ; name[lang = $lang]; priority; breadcrumb[lang = $lang]      ; allowsChildren; translatorId                     ; translatorParameters; categories(id)
+                                     ; y_cart_total_greater_than ; Cart total        ; 1200    ; Cart total {operator} {value} ; false         ; ruleCartTotalConditionTranslator ;                     ; cart
+
+INSERT_UPDATE RuleConditionDefinitionParameter; definition(id)[unique = true]; id[unique = true]; priority; name[lang = $lang]; description[lang = $lang]                              ; type                                                    ; value              ; required[default = true]; validators
+                                              ; y_cart_total_greater_than    ; operator         ; 1100    ; Operator          ; Operator to compare the cart total value               ; Enum(de.hybris.platform.ruledefinitions.AmountOperator) ; """GREATER_THAN""" ;                         ;
+                                              ; y_cart_total_greater_than    ; value            ; 1000    ; Cart total value  ; Map of currency and value of the cart total to be used ; Map(ItemType(Currency),java.math.BigDecimal)            ;                    ;                         ; rulePositiveNumberParameterValidator
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping; definition(id)[unique = true]; ruleType(code)[default = PromotionSourceRule][unique = true]
+                                                    ; y_cart_total_greater_than    ;
+
+INSERT_UPDATE PromotionSourceRule; code[unique = true]                ; name                              ; maxAllowedRuns; conditions                                                                                                                                                                                                                                                                                                                                                       ; actions                                                                                                                                                          ; website(Identifier)[default = $defaultPromoGrp]
+                                 ; 10_percent_off_orders_over_100_USD ; Buy over $100 get 10% off on cart ; 1             ; [{"definitionId":"y_cart_total_greater_than","parameters":{"value":{"uuid":"5b438fb1-6548-448f-acba-0ccff49090ef","type":"Map(ItemType(Currency),java.math.BigDecimal)","value":{"USD":100}},"operator":{"uuid":"9f4b12b5-9cd2-40cc-b163-9f3786b5fa7b","type":"Enum(de.hybris.platform.ruledefinitions.AmountOperator)","value":"GREATER_THAN"}},"children":[]}] ; [{"definitionId":"y_order_percentage_discount","parameters":{"value":{"uuid":"2fe8c7d7-409e-418f-9def-2a46886bd1f9","type":"java.math.BigDecimal","value":10}}}] ;
