@@ -64,13 +64,12 @@
                 <ea:section name="hmc.properties">
                     <ea:attribute qualifier="question" position="1" label="question"/>
                     <ea:attribute qualifier="answer" position="2" label="answer"/>
+                    <ea:attribute qualifier="approved" position="3" label="approved"/>
                 </ea:section>
             </ea:tab>
             <ea:tab name="hmc.administration"/>
         </ea:editorArea>
     </context>
-
-
     <context component="create-wizard" type="Question">
         <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="QuestionWizard"
                  title="create.title(ctx.TYPE_CODE)">
