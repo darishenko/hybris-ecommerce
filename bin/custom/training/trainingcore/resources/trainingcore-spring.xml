@@ -12,6 +12,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:annotation-config/>
+    <context:component-scan base-package="de.hybris.training"/>
 
     <!-- Spring Integration -->
     <import resource="classpath:/trainingcore/integration/hot-folder-store-electronics-spring.xml"/>
@@ -495,6 +496,28 @@
     <bean id="quoteExpiredProcessDefinitionResource"
           class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
         <property name="resource" value="classpath:/trainingcore/processes/quote/quote-expired-email-process.xml"/>
+    </bean>
+
+    <alias name="defaultQuestionService" alias="questionService"/>
+    <bean name="defaultQuestionService" class="de.hybris.training.core.services.impl.DefaultQuestionService">
+        <property name="questionDao" ref="questionDao"/>
+    </bean>
+
+    <bean id="newQuestionsEmailSendJob" class="de.hybris.training.core.job.NewQuestionsEmailSendJob"
+          parent="abstractJobPerformable">
+        <property name="questionService" ref="questionService"/>
+        <property name="cronJobHistoryService" ref="cronJobHistoryService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+    <bean id="newQuestionsEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/trainingcore/processes/newQuestionsEmailProcess.xml"/>
+    </bean>
+
+    <bean id="generateNewQuestionsEmail" parent="abstractGenerateEmailAction">
+        <property name="frontendTemplateName" value="NewQuestionsEmailTemplate"/>
     </bean>
 
     <!-- Quotes email notification jobs -->
