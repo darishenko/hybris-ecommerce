@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Required;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductQuestionDataPopulator implements Populator<ProductModel, ProductData> {
     private Converter<QuestionModel, QuestionData> questionConverter;
@@ -18,7 +19,7 @@ public class ProductQuestionDataPopulator implements Populator<ProductModel, Pro
     @Override
     public void populate(@Nonnull ProductModel productModel, @Nonnull ProductData productData)
             throws ConversionException {
-        final List<QuestionModel> questions = productModel.getQuestions();
+        final List<QuestionModel> questions = getApprovedQuestions(productModel);
 
         productData.setQuestions(questionConverter.convertAll(questions));
     }
@@ -26,5 +27,11 @@ public class ProductQuestionDataPopulator implements Populator<ProductModel, Pro
     @Required
     public void setQuestionConverter(final Converter<QuestionModel, QuestionData> questionConverter) {
         this.questionConverter = questionConverter;
+    }
+
+    private List<QuestionModel> getApprovedQuestions(ProductModel product) {
+        return product.getQuestions().stream()
+                .filter(item -> Boolean.TRUE.equals(item.getApproved()))
+                .collect(Collectors.toList());
     }
 }

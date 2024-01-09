@@ -27,12 +27,27 @@
         </enumtype>
     </enumtypes>
 
+    <relations>
+        <relation code="QuestionsToNewQuestionsEmailProcess" localized="false">
+            <sourceElement type="Question" qualifier="questions" ordered="false" collectiontype="set"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement type="NewQuestionsEmailProcess" qualifier="newQuestionsEmailProcess" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+    </relations>
+
     <itemtypes>
-
-        <!-- Add your item definitions here -->
-
-
-        <!-- TypeGroups are for structure of this file only -->
+        <itemtype code="NewQuestionsEmailProcess" extends="StoreFrontCustomerProcess"
+                  jaloclass="de.hybris.training.core.jalo.NewQuestionsEmailProcess">
+            <attributes>
+                <attribute qualifier="email" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
@@ -103,6 +118,5 @@
                 </attributes>
             </itemtype>
         </typegroup>
-
     </itemtypes>
 </items>

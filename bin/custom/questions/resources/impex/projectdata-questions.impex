@@ -1,16 +1,16 @@
 $productCatalog = electronicsProductCatalog
 $catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Online'])[unique=true, default=$productCatalog:Online]
 
-INSERT_UPDATE Question; code[unique = true]; questionCustomer(uid); question                 ; answerCustomer(uid); answer        ; product(code[unique = true], $catalogVersion)
-                      ; 0025122023         ; testuser3@test.com   ; test question content 1  ; testuser2@test.com ; test answer 1 ; 300938
-                      ; 0125122023         ; testuser2@test.com   ; test question content 2  ;                    ;               ; 300938
-                      ; 0225122023         ; testuser3@test.com   ; test question content 3  ; testuser2@test.com ; test answer 2 ; 300938
-                      ; 0325122023         ; testuser2@test.com   ; test question content 4  ;                    ;               ; 300938
-                      ; 0425122023         ; testuser3@test.com   ; test question content 5  ; testuser2@test.com ; test answer 3 ; 1978440_md
-                      ; 0525122023         ; testuser2@test.com   ; test question content 6  ;                    ;               ; 1978440_md
-                      ; 0625122023         ; testuser2@test.com   ; test question content 7  ;                    ;               ; 325414
-                      ; 0725122023         ; testuser3@test.com   ; test question content 8  ; testuser2@test.com ; test answer 3 ; 816802
-                      ; 0825122023         ; testuser2@test.com   ; test question content 9  ;                    ;               ; 816802
-                      ; 0925122023         ; testuser2@test.com   ; test question content 10 ;                    ;               ; 816802
+INSERT_UPDATE Question; code[unique = true]; questionCustomer(uid); question                 ; answerCustomer(uid); answer        ; product(code[unique = true], $catalogVersion); approved
+                      ; 0025122023         ; testuser3@test.com   ; test question content 1  ; testuser2@test.com ; test answer 1 ; 300938                                       ; false
+                      ; 0125122023         ; testuser2@test.com   ; test question content 2  ;                    ;               ; 300938                                       ; false
+                      ; 0225122023         ; testuser3@test.com   ; test question content 3  ; testuser2@test.com ; test answer 2 ; 300938                                       ; false
+                      ; 0325122023         ; testuser2@test.com   ; test question content 4  ;                    ;               ; 300938                                       ; false
+                      ; 0425122023         ; testuser3@test.com   ; test question content 5  ; testuser2@test.com ; test answer 3 ; 1978440_md                                   ; false
+                      ; 0525122023         ; testuser2@test.com   ; test question content 6  ;                    ;               ; 1978440_md                                   ; false
+                      ; 0625122023         ; testuser2@test.com   ; test question content 7  ;                    ;               ; 325414                                       ; false
+                      ; 0725122023         ; testuser3@test.com   ; test question content 8  ; testuser2@test.com ; test answer 3 ; 816802                                       ; false
+                      ; 0825122023         ; testuser2@test.com   ; test question content 9  ;                    ;               ; 816802                                       ; false
+                      ; 0925122023         ; testuser2@test.com   ; test question content 10 ;                    ;               ; 816802                                       ; false
 
 

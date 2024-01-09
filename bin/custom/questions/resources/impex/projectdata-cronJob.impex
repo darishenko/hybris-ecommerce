@@ -1,0 +1,5 @@
+INSERT_UPDATE ServicelayerJob; code[unique = true]      ; SpringId
+                             ; newQuestionsEmailSendJob ; newQuestionsEmailSendJob
+
+INSERT_UPDATE CronJob; code[unique = true]          ; job(code)                ; singleExecutable; sessionLanguage(isocode)
+                     ; newQuestionsEmailSendCronJob ; newQuestionsEmailSendJob ; false           ; en

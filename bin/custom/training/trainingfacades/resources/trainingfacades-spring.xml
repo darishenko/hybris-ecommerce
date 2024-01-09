@@ -203,6 +203,13 @@
         <property name="priceDataFactory" ref="priceDataFactory"/>
     </bean>
 
+    <bean id="newQuestionsEmailContext"
+          class="de.hybris.training.facades.process.email.context.NewQuestionsEmailContext"
+          parent="abstractEmailContext"
+          scope="prototype">
+        <property name="questionDataConverter" ref="questionConverter"/>
+    </bean>
+
     <alias name="yacceleratorSearchPagePointOfServiceDistancePopulator"
            alias="searchPagePointOfServiceDistancePopulator"/>
     <bean id="yacceleratorSearchPagePointOfServiceDistancePopulator"

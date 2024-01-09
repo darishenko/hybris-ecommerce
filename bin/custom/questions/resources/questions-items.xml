@@ -41,6 +41,11 @@
                     <description>customer, who answered to a question; can be anonymous</description>
                     <persistence type="property"/>
                 </attribute>
+                <attribute qualifier="approved" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers optional="false" write="true" initial="true"/>
+                    <defaultvalue>false</defaultvalue>
+                </attribute>
             </attributes>
         </itemtype>
         <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent" generate="true" autocreate="true"
