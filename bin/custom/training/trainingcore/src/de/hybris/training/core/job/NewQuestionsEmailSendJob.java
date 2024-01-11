@@ -1,6 +1,6 @@
 package de.hybris.training.core.job;
 
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.servicelayer.model.ModelService;

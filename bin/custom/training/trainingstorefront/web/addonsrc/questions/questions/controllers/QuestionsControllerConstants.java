@@ -1,6 +1,6 @@
-package com.myapp.questions.controllers;
+package questions.controllers;
 
-import org.training.core.model.QuestionsCMSComponentModel;
+import questions.model.QuestionsCMSComponentModel;
 
 public interface QuestionsControllerConstants {
     interface Actions {

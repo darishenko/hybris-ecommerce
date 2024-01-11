@@ -1,7 +1,7 @@
-package com.myapp.questions.populators;
+package questions.populators;
 
 import com.myapp.questions.data.QuestionData;
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import org.apache.commons.lang.StringUtils;

@@ -49,7 +49,7 @@
             </attributes>
         </itemtype>
         <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent" generate="true" autocreate="true"
-                  jaloclass="org.training.core.jalo.QuestionsCMSComponent">
+                  jaloclass="questions.jalo.QuestionsCMSComponent">
             <description>Used to display questions for a product</description>
             <attributes>
                 <attribute qualifier="numberOfQuestionsToShow" type="java.lang.Integer">

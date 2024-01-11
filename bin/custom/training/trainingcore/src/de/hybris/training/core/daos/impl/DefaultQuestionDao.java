@@ -1,7 +1,7 @@
 package de.hybris.training.core.daos.impl;
 
 import de.hybris.training.core.daos.QuestionDao;
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import org.springframework.beans.factory.annotation.Autowired;

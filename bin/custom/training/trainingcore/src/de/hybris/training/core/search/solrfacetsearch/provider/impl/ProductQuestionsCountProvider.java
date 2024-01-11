@@ -1,6 +1,6 @@
 package de.hybris.training.core.search.solrfacetsearch.provider.impl;
 
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.solrfacetsearch.config.IndexConfig;

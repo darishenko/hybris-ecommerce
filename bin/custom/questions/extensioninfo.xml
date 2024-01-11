@@ -8,8 +8,8 @@
                name="questions">
         <requires-extension name="cms2"/>
         <requires-extension name="addonsupport"/>
-        <coremodule generated="true" manager="com.myapp.questions.jalo.QuestionsManager"
-                    packageroot="com.myapp.questions"/>
+        <coremodule generated="true" manager="questions.jalo.QuestionsManager"
+                    packageroot="questions"/>
         <meta key="classpathgen" value="false"/>
         <meta key="deprecated" value="true"/>
     </extension>

@@ -1,7 +1,7 @@
-package com.myapp.questions.controllers.cms;
+package questions.controllers.cms;
 
-import com.myapp.questions.controllers.QuestionsControllerConstants;
-import com.myapp.questions.facades.ProductQuestionFacade;
+import questions.controllers.QuestionsControllerConstants;
+import questions.facades.ProductQuestionFacade;
 import de.hybris.platform.addonsupport.controllers.cms.AbstractCMSAddOnComponentController;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.training.core.model.QuestionsCMSComponentModel;
+import questions.model.QuestionsCMSComponentModel;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;

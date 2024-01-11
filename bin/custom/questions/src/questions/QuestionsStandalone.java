@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
  */
-package com.myapp.questions;
+package questions;
 
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.jalo.JaloSession;
@@ -14,7 +14,7 @@ import de.hybris.platform.util.Utilities;
  * commandline.<br>
  * To run this from commandline, just use the following command:<br>
  * <code>
- * java -jar bootstrap/bin/ybootstrap.jar "new com.myapp.questions.QuestionsStandalone().run();"
+ * java -jar bootstrap/bin/ybootstrap.jar "new questions.QuestionsStandalone().run();"
  * </code> From eclipse, just run as Java Application. Note that you maybe need to add all other projects like
  * ext-commerce, ext-pim to the Launch configuration classpath.
  */

@@ -1,4 +1,4 @@
-package com.myapp.questions.facades;
+package questions.facades;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
 

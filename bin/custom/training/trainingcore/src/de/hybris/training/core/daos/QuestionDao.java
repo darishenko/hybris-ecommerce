@@ -1,6 +1,6 @@
 package de.hybris.training.core.daos;
 
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 
 import java.util.Date;
 import java.util.List;
