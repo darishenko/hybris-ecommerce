@@ -13,7 +13,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
-    <context:component-scan base-package="com.myapp.questions"/>
+
     <bean id="questionsCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
         <property name="supportedChannels">
             <list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
@@ -32,7 +32,7 @@
     </bean>
     <alias name="defaultQuestionDataPopulator" alias="questionDataPopulator"/>
     <bean id="defaultQuestionDataPopulator"
-          class="com.myapp.questions.populators.QuestionDataPopulator">
+          class="questions.populators.QuestionDataPopulator">
     </bean>
     <alias name="defaultQuestionConverter" alias="questionConverter"/>
     <bean id="defaultQuestionConverter" parent="abstractPopulatingConverter">
@@ -45,20 +45,20 @@
     </bean>
     <alias name="defaultProductQuestionDataPopulator" alias="productQuestionDataPopulator"/>
     <bean id="defaultProductQuestionDataPopulator"
-          class="com.myapp.questions.populators.ProductQuestionDataPopulator">
+          class="questions.populators.ProductQuestionDataPopulator">
         <property name="questionConverter" ref="questionConverter"/>
     </bean>
-    <bean id="productConverter" parent="abstractPopulatingConverter">
+    <bean id="customProductConverter" parent="defaultProductConverter">
         <property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
         <property name="populators">
-            <list>
+            <list merge="true">
                 <ref bean="productQuestionDataPopulator"/>
             </list>
         </property>
     </bean>
     <alias name="defaultProductQuestionFacade" alias="productQuestionFacade"/>
-    <bean id="defaultProductQuestionFacade" class="com.myapp.questions.facades.impl.DefaultProductQuestionFacade">
-        <property name="productConverter" ref="productConverter"/>
+    <bean id="defaultProductQuestionFacade" class="questions.facades.impl.DefaultProductQuestionFacade">
+        <property name="productConverter" ref="customProductConverter"/>
         <property name="productService" ref="productService"/>
     </bean>
 </beans>

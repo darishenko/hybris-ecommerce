@@ -14,10 +14,9 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.myapp.questions"/>
-    <bean id="QuestionsCMSComponentController"
-          class="com.myapp.questions.controllers.cms.QuestionsCMSComponentController">
-    </bean>
+    <context:component-scan base-package="questions"
+                            scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"/>
+
     <bean id="defaultQuestionsJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
         <property name="addOnName" value="questions"/>
     </bean>

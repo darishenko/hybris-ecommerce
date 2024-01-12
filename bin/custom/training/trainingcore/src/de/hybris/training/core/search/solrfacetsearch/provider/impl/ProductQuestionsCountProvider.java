@@ -1,6 +1,6 @@
 package de.hybris.training.core.search.solrfacetsearch.provider.impl;
 
-import com.myapp.questions.model.QuestionModel;
+import questions.model.QuestionModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.solrfacetsearch.config.IndexConfig;
@@ -62,18 +62,24 @@ public class ProductQuestionsCountProvider implements FieldValueProvider, Serial
         return null;
     }
 
-    @Required
-    public void setFieldNameProvider(final FieldNameProvider fieldNameProvider) {
-        this.fieldNameProvider = fieldNameProvider;
-    }
-
     private Integer getProductQuestionsCount(final ProductModel product) {
-        List<QuestionModel> questions = product.getQuestions();
+        List<QuestionModel> questions = getApprovedQuestions(product);
 
         if (CollectionUtils.isEmpty(questions)) {
             return 0;
         }
 
         return questions.size();
+    }
+
+    private List<QuestionModel> getApprovedQuestions(ProductModel product) {
+        return product.getQuestions().stream()
+                .filter(item -> Boolean.TRUE.equals(item.getApproved()))
+                .collect(Collectors.toList());
+    }
+
+    @Required
+    public void setFieldNameProvider(final FieldNameProvider fieldNameProvider) {
+        this.fieldNameProvider = fieldNameProvider;
     }
 }
