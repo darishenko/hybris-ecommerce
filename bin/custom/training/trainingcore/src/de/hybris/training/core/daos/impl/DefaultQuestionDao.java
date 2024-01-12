@@ -16,7 +16,7 @@ public class DefaultQuestionDao implements QuestionDao {
             + QuestionModel.PK + "} FROM {"
             + QuestionModel._TYPECODE + " AS p} ";
     private static final String QUERY_SELECT_NEW_QUESTIONS = QUERY_SELECT_ALL_QUESTIONS
-            + "WHERE {p:" + QuestionModel.CREATIONTIME + "} > ?" + QuestionModel.CREATIONTIME ;
+            + "WHERE {p:" + QuestionModel.CREATIONTIME + "} > ?" + QuestionModel.CREATIONTIME;
 
     @Autowired
     private FlexibleSearchService flexibleSearchService;

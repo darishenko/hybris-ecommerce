@@ -2,22 +2,22 @@
 <head>
 </head>
 <body bgcolor="#ffffff">
-<table>
-    #foreach( $question in $questions )
+<table border="1">
+    <thead>
+    <tr>
+        <th>Question</th>
+        <th>Question Customer</th>
+        <th>Answer</th>
+        <th>Answer Customer</th>
+    </tr>
+    </thead>
+    #foreach ($question in ${questions})
         <tr>
-            <th>Question</th>
-            <th>Question Customer</th>
-            <th>Answer</th>
-            <th>Answer Customer</th>
+            <td>$question.questionCustomerName</td>
+            <td>$question.question</td>
+            <td>$question.answerCustomerName</td>
+            <td>$question.answer</td>
         </tr>
-        #foreach ($question in ${ctx.questions})
-            <tr>
-                <td>$question.question</td>
-                <td>$question.questionCustomer</td>
-                <td>$question.answer</td>
-                <td>$question.answerCustomer</td>
-            </tr>
-        #end
     #end
 </table>
 </body>

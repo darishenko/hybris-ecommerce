@@ -15,13 +15,18 @@ import de.hybris.platform.cronjob.model.CronJobModel;
 import de.hybris.platform.servicelayer.cronjob.AbstractJobPerformable;
 import de.hybris.platform.servicelayer.cronjob.CronJobHistoryService;
 import de.hybris.platform.servicelayer.cronjob.PerformResult;
-import org.apache.commons.collections.CollectionUtils;
+import org.springframework.util.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 public class NewQuestionsEmailSendJob extends AbstractJobPerformable<CronJobModel> {
     private static final String NEW_QUESTIONS_PROCESS_NAME = "newQuestionsEmailProcess";
@@ -82,7 +87,7 @@ public class NewQuestionsEmailSendJob extends AbstractJobPerformable<CronJobMode
         process.setSite(baseSite);
         process.setLanguage(baseSite.getDefaultLanguage());
 
-        if (CollectionUtils.isNotEmpty(baseStoreList)) {
+        if (!CollectionUtils.isEmpty(baseStoreList)) {
             process.setStore(baseSite.getStores().get(0));
         }
 
