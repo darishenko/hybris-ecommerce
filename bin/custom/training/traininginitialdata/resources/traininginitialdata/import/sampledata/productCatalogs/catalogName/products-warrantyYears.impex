@@ -1,0 +1,8 @@
+$productCatalog = electronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Online'])[unique=true, default=$productCatalog:Online]
+
+INSERT_UPDATE Product; code[unique = true]; warrantyYears; $catalogVersion
+                     ; 300938             ; 1
+                     ; 1978440_md         ; 2
+                     ; 325414             ; 3
+                     ; 816802             ; 4

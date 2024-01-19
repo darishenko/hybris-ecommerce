@@ -224,4 +224,12 @@
           class="de.hybris.training.facades.populators.CustomSearchResultVariantProductPopulator"
           parent="variantCommerceSearchResultProductPopulator">
     </bean>
+    <alias name="defaultWarrantyYearsProductPopulator" alias="warrantyYearsProductPopulator"/>
+    <bean id="defaultWarrantyYearsProductPopulator"
+          class="de.hybris.training.facades.populators.WarrantyYearsProductPopulator">
+    </bean>
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="productConverter"/>
+        <property name="add" ref="defaultWarrantyYearsProductPopulator"/>
+    </bean>
 </beans>

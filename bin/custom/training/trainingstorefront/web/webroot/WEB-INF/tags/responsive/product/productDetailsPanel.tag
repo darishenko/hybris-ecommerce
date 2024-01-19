@@ -3,6 +3,7 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <div class="product-details page-title">
 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
@@ -24,7 +25,11 @@
 						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 							<product:productPricePanel product="${product}" />
 						</ycommerce:testId>
-						<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>
+						<div class="description">${ycommerce:sanitizeHTML(product.summary)}
+							<p>
+								<spring:message code="text.warranty.years"/>${product.warrantyYears}
+							</p>
+						</div>
 					</div>
 				</div>
 

@@ -40,6 +40,14 @@
     </relations>
 
     <itemtypes>
+        <itemtype code="Product" generate="false" autocreate="false">
+            <attributes>
+                <attribute qualifier="warrantyYears" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
         <itemtype code="NewQuestionsEmailProcess" extends="StoreFrontCustomerProcess"
                   jaloclass="de.hybris.training.core.jalo.NewQuestionsEmailProcess">
             <attributes>
