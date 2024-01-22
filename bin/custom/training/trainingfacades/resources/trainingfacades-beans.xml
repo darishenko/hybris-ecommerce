@@ -6,6 +6,7 @@
     <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
         <property name="genders" type="java.util.List&lt;de.hybris.training.facades.product.data.GenderData>"/>
         <property name="questionsCount" type="java.lang.Integer"/>
+        <property name="warrantyYears" type="java.lang.Integer"/>
     </bean>
     <bean class="de.hybris.training.facades.product.data.GenderData">
         <property name="code" type="String"/>

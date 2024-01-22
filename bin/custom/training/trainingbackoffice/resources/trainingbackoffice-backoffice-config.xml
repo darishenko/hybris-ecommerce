@@ -112,4 +112,14 @@
             </wz:step>
         </wz:flow>
     </context>
+
+    <context type="Product" component="editor-area" merge-by="type">
+        <ea:editorArea xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea" name="">
+            <ea:tab name="hmc.properties">
+                <ea:section name="product.warranty">
+                    <ea:attribute qualifier="warrantyYears" label="product.warranty.years"/>
+                </ea:section>
+            </ea:tab>
+        </ea:editorArea>
+    </context>
 </config>
